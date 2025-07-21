@@ -1,5 +1,34 @@
 import type { Metadata } from 'next'
-import '@/styles/globals.css'
+import localFont from 'next/font/local'
+import '@/styles/globals.scss'
+
+// Fonts
+const anton = localFont({
+  src: './fonts/Anton-Regular.ttf',
+  display: 'fallback',
+  variable: '--font-anton'
+})
+
+const josefinSans = localFont({
+  src: [
+    {
+      path: './fonts/JosefinSans-Regular.ttf',
+      style: 'normal'
+    },
+    {
+      path: './fonts/JosefinSans-Medium.ttf',
+      style: 'normal'
+    },
+    {
+      path: './fonts/JosefinSans-Bold.ttf',
+      style: 'normal'
+    },
+    {
+      path: './fonts/JosefinSans-SemiBold.ttf',
+      style: 'normal'
+    }
+  ]
+})
 
 export const metadata: Metadata = {
   title: 'Booking Movie Ticket',
@@ -13,7 +42,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='en'>
-      <body>
+      <body className={`${josefinSans.className} ${anton.variable}`}>
         {children}
       </body>
     </html>
