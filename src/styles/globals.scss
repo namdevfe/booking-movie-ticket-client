@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --max-w-page: 2560px;
+
+    // Colors
+    --bg-header-cl: #0f172a;
+    --primary-cl: #f3ea28;
+    --secondary-cl: #639;
+    --hover-bg-btn-primary-cl: linear-gradient(106deg, #639, #36c 102.69%);
+    --hover-bg-btn-secondary-cl: linear-gradient(90deg, #ff6d00, #ffc107);
+  }
+
+  html {
+    font-size: 62.5%;
+  }
+
+  body {
+    @apply w-full max-w-[var(--max-w-page)] ml-auto mr-auto text-white bg-[var(--bg-header-cl)] text-base;
+  }
+}
+
