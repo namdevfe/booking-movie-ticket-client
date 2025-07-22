@@ -1,4 +1,12 @@
 {
+  "search": {
+    "placeholder": "Find movies, theaters"
+  },
+  "button": {
+    "buyTicket": "Buy Tickets",
+    "buyPopcorn": "Buy Popcorn",
+    "login": "Login"
+  },
   "HomePage": {
     "title": "Hello world!",
     "about": "Go to the about page"

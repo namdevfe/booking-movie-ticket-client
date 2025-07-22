@@ -1,0 +1,90 @@
+@import '../../../styles/core/mixins';
+
+.header {
+  height: var(--h-header);
+
+  .mobileMenuToggle {
+    --size-btn: 32px;
+    --w-line: 24px;
+    --h-line: 2px;
+
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    width: var(--size-btn);
+    height: var(--size-btn);
+
+    // Line center
+    span {
+      display: block;
+      width: var(--w-line);
+      height: var(--h-line);
+      background-color: var(--white-cl);
+      @include mid();
+      @include transition(opacity var(--transition-duration-time));
+    }
+
+    // Line top
+    &::before {
+      position: absolute;
+      top: 6px;
+      content: '';
+      display: block;
+      width: var(--w-line);
+      height: var(--h-line);
+      background-color: var(--white-cl);
+      will-change: transform;
+      @include transition(transform var(--transition-duration-time));
+    }
+
+    &::after {
+      position: absolute;
+      bottom: 6px;
+      content: '';
+      display: block;
+      width: var(--w-line);
+      height: var(--h-line);
+      background-color: var(--white-cl);
+      will-change: transform;
+      @include transition(transform var(--transition-duration-time));
+    }
+
+    // isShow
+    &.--isShow {
+      &::before {
+        @include transform(rotate(45deg) translate(7px, 8px));
+      }
+
+      span {
+        opacity: 0;
+      }
+
+      &::after {
+        @include transform(rotate(-45deg) translate(4px, -7px));
+      }
+    }
+  }
+
+  .btnSearch,
+  .btnAuth {
+    --size-btn: 32px;
+    padding: 0;
+    width: var(--size-btn);
+    height: var(--size-btn);
+    text-transform: initial;
+  }
+
+  .btnSearch {
+    border: 2px solid var(--white-cl);
+    border-radius: 100%;
+  }
+
+  // Responsive
+  @include sm {
+    .mobileMenuToggle {
+      display: none;
+    }
+  }
+}
