@@ -1,0 +1,32 @@
+:root {
+  --max-w-page: 2560px;
+  --w-layout-container: 100%;
+  --p-layout-container: 15px;
+  --h-header-top: 60px;
+  --h-header-bottom: 50px;
+  --h-header: calc(var(--h-header-top) + var(--h-header-bottom));
+  --w-header-search: 250px;
+  --h-header-search: 40px;
+
+  // Colors
+  --bg-header-cl: #0f172a;
+  --primary-cl: #f3ea28;
+  --secondary-cl: #639;
+  --white-cl: #fff;
+  --black-cl: #0f172a;
+  --gray-cl: #475569;
+  --hover-bg-btn-primary-cl: linear-gradient(106deg, #639, #36c 102.69%);
+  --hover-bg-btn-secondary-cl: linear-gradient(90deg, #ff6d00, #ffc107);
+
+  // Animations
+  --transition-duration-time: 0.4s;
+
+  @include sm {
+    --w-layout-container: calc(960px + (var(--p-layout-container) * 2));
+  }
+
+  @include md {
+    --w-layout-container: calc(1140 + (var(--p-layout-container) * 2));
+    --h-header-top: 78px;
+  }
+}

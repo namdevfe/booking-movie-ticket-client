@@ -1,0 +1,126 @@
+@import '../../../styles/core/mixins';
+
+.btn {
+  position: relative;
+  width: fit-content;
+  font-family: var(--font-anton);
+  text-transform: uppercase;
+  text-align: center;
+  overflow: hidden;
+  @include mid(true);
+  @include transition(all var(--transition-duration-time));
+
+  // Button Primary
+  &.--primary {
+    color: var(--black-cl);
+    background-color: transparent;
+
+    // Background Primary (Default)
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--primary-cl);
+    }
+
+    // Background Primary When Hover
+    &::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-image: var(--hover-bg-btn-primary-cl);
+      will-change: transform;
+      @include transition(transform var(--transition-duration-time));
+      @include transform(scaleX(0));
+      @include transform-origin(right);
+    }
+
+    // Hover
+    &:hover {
+      color: var(--white-cl);
+      &::after {
+        @include transform(scaleX(1));
+        @include transform-origin(left);
+      }
+    }
+  }
+
+  // Button Secondary
+  &.--secondary {
+    color: var(--white-cl);
+    background-color: transparent;
+
+    // Background Secondary (Default)
+    &::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-color: var(--secondary-cl);
+    }
+
+    // Background Primary When Hover
+    &::after {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      content: '';
+      display: block;
+      width: 100%;
+      height: 100%;
+      background-image: var(--hover-bg-btn-secondary-cl);
+      will-change: transform;
+      @include transition(transform var(--transition-duration-time));
+      @include transform(scaleX(0));
+      @include transform-origin(right);
+    }
+
+    // Hover
+    &:hover {
+      &::after {
+        @include transform(scaleX(1));
+        @include transform-origin(left);
+      }
+    }
+  }
+
+  // Button Transparent
+  &.--transparent {
+    background-color: transparent;
+  }
+
+  // Button Medium
+  &.--size-md {
+    padding: 8px 12px;
+    height: 34px;
+    gap: 10px;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    line-height: 1.9rem;
+  }
+
+  // Button Large
+  &.--size-lg {
+    padding: 8px 12px;
+    height: 40px;
+    gap: 10px;
+    border-radius: 4px;
+    font-size: 1.4rem;
+    line-height: 2.2rem;
+  }
+}

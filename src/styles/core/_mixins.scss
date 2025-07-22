@@ -1,0 +1,180 @@
+// Landscape
+@mixin landscape {
+    @media screen and (orientation: landscape){
+        @content;
+    }
+}
+
+// Portrait
+@mixin portrait {
+    @media screen and (orientation: portrait) {
+        @content;
+    }
+}
+
+// @media max, min
+@mixin maxW($args) {
+    @media (max-width: $args) {
+        @content;
+    }
+}
+
+@mixin minW($args) {
+    @media (min-width: $args) {
+        @content;
+    }
+}
+
+@mixin maxH($args) {
+    @media (max-height: $args) {
+        @content;
+    }
+}
+
+@mixin minH($args) {
+    @media (min-height: $args) {
+        @content;
+    }
+}
+
+// Mobile first - Tailwind-like breakpoints
+
+// Phones small: ~0px+
+@mixin xxxs {
+  @media screen and (min-width: 0px) {
+    @content;
+  }
+}
+
+// Phones large: ≥ 375px
+@mixin xxs {
+  @media screen and (min-width: 376px) {
+    @content;
+  }
+}
+
+// Tablets small or Phone landscape: ≥ 576px
+@mixin xs {
+  @media screen and (min-width: 576px) {
+    @content;
+  }
+}
+
+// Tablets medium: ≥ 768px (Tailwind 'md')
+@mixin sm {
+  @media screen and (min-width: 768px) {
+    @content;
+  }
+}
+
+// Laptop small: ≥ 992px (Tailwind 'lg')
+@mixin md {
+  @media screen and (min-width: 992px) {
+    @content;
+  }
+}
+
+// Laptop large: ≥ 1200px (Tailwind 'xl')
+@mixin lg {
+  @media screen and (min-width: 1200px) {
+    @content;
+  }
+}
+
+// Desktop large: ≥ 1440px (Tailwind '2xl')
+@mixin xl {
+  @media screen and (min-width: 1440px) {
+    @content;
+  }
+}
+
+// Transform
+@mixin transform($agrs) {
+  transform: $agrs;
+  -webkit-transform: $agrs;
+  -moz-transform: $agrs;
+  -o-transform: $agrs;
+  -ms-transform: $agrs;
+}
+
+// Transform Origin
+@mixin transform-origin($agrs) {
+  transform-origin: $agrs;
+  -webkit-transform-origin: $agrs;
+  -moz-transform-origin: $agrs;
+  -o-transform-origin: $agrs;
+  -ms-transform-origin: $agrs;
+}
+
+// Object Center
+@mixin mid($flex: false) {
+  @if $flex == false {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+  } @else {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+}
+
+// KeyFrames
+@mixin keyframes($animation-name) {
+    @-webkit-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-moz-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-o-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @-ms-keyframes #{$animation-name} {
+        @content;
+    }
+
+    @keyframes #{$animation-name} {
+        @content;
+    }
+}
+
+// Animation
+@mixin animation($str) {
+    animation: #{$str};
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -o-animation: #{$str};
+    -ms-animation: #{$str};
+}
+
+// Animation Delay
+@mixin animation-delay($str) {
+    animation-delay: #{$str};
+    -webkit-animation-delay: #{$str};
+    -moz-animation-delay: #{$str};
+    -o-animation-delay: #{$str};
+    -ms-animation-delay: #{$str};
+}
+
+// Transition
+@mixin transition($args) {
+    transition: $args;
+    -webkit-transition: $args;
+    -moz-transition: $args;
+    -o-transition: $args;
+    -ms-transition: $args;
+}
+
+// Transition Delay
+@mixin transition-delay($args) {
+    transition-delay: $args;
+    -webkit-transition-delay: $args;
+    -moz-transition-delay: $args;
+    -o-transition-delay: $args;
+    -ms-transition-delay: $args;
+}

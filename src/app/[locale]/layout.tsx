@@ -5,6 +5,7 @@ import { setRequestLocale } from 'next-intl/server'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import '@/styles/globals.scss'
+import MainLayout from '@/components/layouts/main-layout'
 
 // Fonts
 const anton = localFont({
@@ -31,33 +32,37 @@ const josefinSans = localFont({
       path: '../fonts/JosefinSans-SemiBold.ttf',
       style: 'normal'
     }
-  ]
+  ],
+  variable: '--font-josefinsans'
 })
 
 export const metadata: Metadata = {
-  title: 'Booking Movie Ticket',
-  description: 'Website built by NawDev'
+  title: 'Cinestar - Hệ thống rạp chiếu phim giá rẻ, hiện đại bậc nhất',
+  description:
+    'Cinestar không chỉ chiếu phim - chúng tôi còn mang đến nhiều mô hình giải trí đặc sắc khác, giúp bạn tận hưởng từng giây phút bên ngoài màn ảnh rộng.'
 }
- 
+
 export default async function LocaleLayout({
   children,
   params
 }: {
   children: React.ReactNode
-  params: {locale: string}
+  params: { locale: string }
 }) {
   // Ensure that the incoming `locale` is valid
-  const {locale} = params
+  const { locale } = params
   if (!hasLocale(routing.locales, locale)) {
     notFound()
   }
 
   setRequestLocale(locale)
- 
+
   return (
     <html lang={locale}>
-       <body className={`${josefinSans.className} ${anton.variable}`}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+      <body className={`${josefinSans.className} ${josefinSans.variable} ${anton.variable}`}>
+        <NextIntlClientProvider>
+          <MainLayout>{children}</MainLayout>
+        </NextIntlClientProvider>
       </body>
     </html>
   )

@@ -1,4 +1,12 @@
 {
+  "search": {
+    "placeholder": "Tìm phim, rạp"
+  },
+  "button": {
+    "buyTicket": "Đặt vé ngay",
+    "buyPopcorn": "Đặt bắp nước",
+    "login": "Đăng nhập"
+  },
   "HomePage": {
     "title": "Xin chào!",
     "about": "Đi đến trang about"
