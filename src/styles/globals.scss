@@ -28,3 +28,13 @@
     outline: none;
   }
 }
+
+@layer components {
+  .form-control:first-child {
+    margin-top: initial;
+  }
+
+  .form-control + .form-control {
+    margin-top: 26px;
+  }
+}

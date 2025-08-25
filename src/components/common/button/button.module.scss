@@ -7,8 +7,14 @@
   text-transform: uppercase;
   text-align: center;
   overflow: hidden;
+  z-index: 1;
   @include mid(true);
   @include transition(all var(--transition-duration-time));
+
+  > * {
+    position: relative;
+    z-index: 2;
+  }
 
   // Button Primary
   &.--primary {
@@ -20,12 +26,13 @@
       position: absolute;
       left: 0;
       top: 0;
-      z-index: -1;
+      z-index: 0;
       content: '';
       display: block;
       width: 100%;
       height: 100%;
       background-color: var(--primary-cl);
+      pointer-events: none;
     }
 
     // Background Primary When Hover
@@ -33,13 +40,14 @@
       position: absolute;
       left: 0;
       top: 0;
-      z-index: -1;
+      z-index: 0;
       content: '';
       display: block;
       width: 100%;
       height: 100%;
       background-image: var(--hover-bg-btn-primary-cl);
       will-change: transform;
+      pointer-events: none;
       @include transition(transform var(--transition-duration-time));
       @include transform(scaleX(0));
       @include transform-origin(right);
@@ -104,6 +112,20 @@
     background-color: transparent;
   }
 
+  // Button Link
+  &.--link {
+    background-color: transparent;
+    color: black;
+    font-family: inherit;
+    text-transform: initial;
+    text-decoration: underline;
+    @include transition(color var(--transition-duration-time));
+
+    &:hover {
+      color: var(--hover-text-btn-link-cl);
+    }
+  }
+
   // Button Medium
   &.--size-md {
     padding: 8px 12px;
@@ -122,5 +144,6 @@
     border-radius: 4px;
     font-size: 1.4rem;
     line-height: 2.2rem;
+    letter-spacing: 0.08rem;
   }
 }

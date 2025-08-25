@@ -1,0 +1,138 @@
+'use client'
+
+import { getRegisterSchema } from '@/app/[locale]/auth/_components/auth-tabs/register-schema'
+import Button from '@/components/common/button'
+import Input from '@/components/common/input'
+import authService from '@/services/auth-service'
+import { RegisterPayload } from '@/types/auth-type'
+import { zodResolver } from '@hookform/resolvers/zod'
+import { useTranslations } from 'next-intl'
+import { useForm } from 'react-hook-form'
+import { toast } from 'react-toastify'
+
+const RegisterForm = () => {
+  const t = useTranslations('AuthPage.register')
+  const tValidation = useTranslations('validation')
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm<RegisterPayload>({
+    resolver: zodResolver(getRegisterSchema(tValidation))
+  })
+
+  const onSubmit = async (data: RegisterPayload) => {
+    const payload: Record<string, any> = { ...data }
+
+    // Remove confirmPassword field
+    delete payload.confirmPassword
+
+    try {
+      // // Call api register
+      // const res = await fetch('http://localhost:8017/api/v1/auth/register', {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify(payload)
+      // })
+
+      // const result = await res.json()
+      // if (result?.statusCode === 201 && result?.data?._id) {
+      //   toast.success(result?.message)
+      // } else {
+      //   throw new Error(result?.message)
+      // }
+      const res = await authService.register(payload as Omit<RegisterPayload, 'confirmPassword'>)
+      if (res?.statusCode === 201) {
+        toast.success(res.message)
+      }
+    } catch (error: any) {
+      toast.error(error?.message)
+    }
+  }
+
+  return (
+    <form className='p-[36px] bg-white' onSubmit={handleSubmit(onSubmit)}>
+      <Input
+        {...register('fullName')}
+        className='w-full'
+        required
+        type='text'
+        label={t('fields.fullName.label')}
+        placeholder={t('fields.fullName.placeholder')}
+        error={errors.fullName?.message}
+      />
+      <Input
+        {...register('dateOfBirth')}
+        className='w-full'
+        required
+        type='date'
+        label={t('fields.birthday.label')}
+        placeholder={t('fields.birthday.placeholder')}
+        error={errors.dateOfBirth?.message}
+      />
+      <Input
+        {...register('phoneNumber')}
+        className='w-full'
+        required
+        type='text'
+        label={t('fields.phoneNumber.label')}
+        placeholder={t('fields.phoneNumber.placeholder')}
+        error={errors.phoneNumber?.message}
+      />
+      <Input
+        {...register('username')}
+        className='w-full'
+        required
+        type='text'
+        label={t('fields.username.label')}
+        placeholder={t('fields.username.placeholder')}
+        error={errors.username?.message}
+      />
+      <Input
+        {...register('email')}
+        className='w-full'
+        required
+        type='text'
+        label={t('fields.email.label')}
+        placeholder={t('fields.email.placeholder')}
+        error={errors.email?.message}
+      />
+      <Input
+        {...register('password')}
+        className='w-full'
+        required
+        type='password'
+        label={t('fields.password.label')}
+        placeholder={t('fields.password.placeholder')}
+        error={errors.password?.message}
+      />
+      <Input
+        {...register('confirmPassword')}
+        className='w-full'
+        required
+        type='password'
+        label={t('fields.confirmPassword.label')}
+        placeholder={t('fields.confirmPassword.placeholder')}
+        error={errors.confirmPassword?.message}
+      />
+
+      {/* Bottom */}
+      <div className='mt-[26px] w-full'>
+        <Button type='submit' size='lg' className='!w-full !text-base'>
+          <span>{t('submitButton')}</span>
+        </Button>
+        <div className='mt-[16px] flex items-center justify-center'>
+          <p className='text-sm text-helperText'>{t('alreadyHaveAnAccount')}</p>
+          <Button href='/auth' variant='link' size='lg'>
+            {t('goToLogin')}
+          </Button>
+        </div>
+      </div>
+    </form>
+  )
+}
+
+export default RegisterForm
