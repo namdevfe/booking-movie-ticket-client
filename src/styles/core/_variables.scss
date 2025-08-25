@@ -15,8 +15,14 @@
   --white-cl: #fff;
   --black-cl: #0f172a;
   --gray-cl: #475569;
+  --red-cl: #ef4444;
   --hover-bg-btn-primary-cl: linear-gradient(106deg, #639, #36c 102.69%);
   --hover-bg-btn-secondary-cl: linear-gradient(90deg, #ff6d00, #ffc107);
+  --hover-text-btn-link-cl: #639;
+  --text-label-gray-cl: #494949;
+  --border-input-default-cl: #e2e8f0;
+  --border-input-hover-cl: #64748b;
+  --helper-text-cl: #334155;
 
   // Animations
   --transition-duration-time: 0.4s;
@@ -26,7 +32,7 @@
   }
 
   @include md {
-    --w-layout-container: calc(1140 + (var(--p-layout-container) * 2));
+    --w-layout-container: calc(1200px + (var(--p-layout-container) * 2));
     --h-header-top: 78px;
   }
 }

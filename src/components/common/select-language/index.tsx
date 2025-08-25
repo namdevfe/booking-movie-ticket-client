@@ -30,10 +30,16 @@ const SelectLanguage = () => {
               <Link
                 href={pathname}
                 locale={option.value}
-                className='w-full py-2 px-4 flex items-center gap-[8px] transition-colors duration-300 cursor-pointer group hover:bg-[#3366cccc]'
+                className={`w-full py-2 px-4 flex items-center gap-[8px] transition-colors duration-300 cursor-pointer group hover:bg-[#3366cccc] ${
+                  selectedLanguageItem?.value === option.value ? 'bg-[#3366cccc]' : ''
+                }`}
               >
                 <Image src={option.iconUrl} alt={option.title} width={24} height={24} />
-                <span className='transition-colors duration-300 text-sm text-gray group-hover:text-white'>
+                <span
+                  className={`transition-colors duration-300 text-sm text-gray group-hover:text-white ${
+                    selectedLanguageItem?.value === option.value ? 'text-white' : ''
+                  }`}
+                >
                   {option.title}
                 </span>
               </Link>

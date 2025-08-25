@@ -20,7 +20,7 @@ const Content = ({ children }: ContentProps) => {
         left: coords.left,
         width: coords.width
       }}
-      className='absolute z-50 bg-white rounded-md overflow-hidden'
+      className='absolute z-[101] bg-white rounded-md overflow-hidden'
       onClick={(e) => e.stopPropagation()}
     >
       {children}

@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import '@/styles/globals.scss'
 import MainLayout from '@/components/layouts/main-layout'
+import { ToastContainer } from 'react-toastify'
 
 // Fonts
 const anton = localFont({
@@ -63,6 +64,8 @@ export default async function LocaleLayout({
         <NextIntlClientProvider>
           <MainLayout>{children}</MainLayout>
         </NextIntlClientProvider>
+
+        <ToastContainer theme='colored' />
       </body>
     </html>
   )

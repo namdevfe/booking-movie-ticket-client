@@ -10,5 +10,76 @@
   "HomePage": {
     "title": "Hello world!",
     "about": "Go to the about page"
+  },
+  "AuthPage": {
+    "login": {
+      "title": "Sign in",
+      "submitButton": "Sign in",
+      "fields": {
+        "username": {
+          "label": "Username",
+          "placeholder": "Fill in username"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Fill in email"
+        },
+        "emailOrUsername": {
+          "label": "Email or username",
+          "placeholder": "Fill in email or username"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Fill in password"
+        }
+      },
+      "forgotPassword": "Forgot password?"
+    },
+    "register": {
+      "title": "Sign up",
+      "submitButton": "Sign up",
+      "fields": {
+        "fullName": {
+          "label": "Name (Last, First)",
+          "placeholder": "Name"
+        },
+        "birthday": {
+          "label": "Birthday",
+          "placeholder": "mm/dd/yyyy"
+        },
+        "phoneNumber": {
+          "label": "Phone number",
+          "placeholder": "Phone number"
+        },
+        "username": {
+          "label": "Username",
+          "placeholder": "Username"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Fill in email"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "Password"
+        },
+        "confirmPassword": {
+          "label": "Confirm Password",
+          "placeholder": "Confirm Password"
+        },
+        "privacyPolicy": "Privacy Policy",
+        "isAgree": "Customers have agreed to the terms and conditions of Cinestar membership"
+      },
+      "alreadyHaveAnAccount": "Already have an account?",
+      "goToLogin": "Sign up"
+    }
+  },
+  "validation": {
+    "required": "Please fill in the information",
+    "dateOfBirthRequired": "Please enter your date of birth",
+    "dateOfBirthInvalid": "Please enter a valid date of birth",
+    "emailInvalid": "Please enter a valid email",
+    "passwordsDoNotMatch": "Passwords do not match",
+    "emailOrUsernameInvalid": "Please enter a valid email or username"
   }
 }

@@ -62,7 +62,11 @@ const Header = async () => {
             {isLoggedIn ? (
               <Account />
             ) : (
-              <Button variant='transparent' className='!p-0 hover:text-primary font-josefinSans !text-base normal-case'>
+              <Button
+                className='!p-0 hover:text-primary !font-josefinSans !text-base !normal-case'
+                variant='transparent'
+                href='/auth'
+              >
                 <IconUser className='w-[24px] h-[24px]' />
                 <span>{tButton('login')}</span>
               </Button>
@@ -78,7 +82,7 @@ const Header = async () => {
         </div>
 
         {/* Header bottom */}
-        <div>Header bottom</div>
+        <div className='border-t border-[rgba(248,250,252,0.1)]'>Header bottom</div>
       </div>
     </header>
   )

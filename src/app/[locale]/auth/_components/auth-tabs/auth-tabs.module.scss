@@ -1,0 +1,44 @@
+@import '../../../../../styles/core/mixins';
+
+.authTabs {
+  max-width: 100%;
+
+  // Tab List
+  .tabList {
+    display: flex;
+    align-items: center;
+  }
+
+  // Tab Item
+  .tabItem {
+    @apply relative flex-1 bg-transparent p-[12px] flex items-center justify-center rounded-t-[4px] text-center uppercase text-sm text-white font-anton cursor-pointer transition-colors duration-300;
+    @include mid(true);
+
+    // Background Hover
+    &::before {
+      content: '';
+      display: block;
+      border-radius: 4px;
+      width: calc(100% - 8px);
+      height: calc(100% - 8px);
+      background-color: transparent;
+      @include mid();
+      @include transition(all var(--transition-duration-time));
+    }
+
+    // Change background tab when hover
+    &:hover::before {
+      background-color: rgba(248, 250, 252, 0.3);
+    }
+
+    // Tab Active
+    &--active {
+      background-color: var(--white-cl);
+      color: #000;
+    }
+  }
+
+  @include sm {
+    max-width: 50%;
+  }
+}

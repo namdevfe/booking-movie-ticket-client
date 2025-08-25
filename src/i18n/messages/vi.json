@@ -10,5 +10,76 @@
   "HomePage": {
     "title": "Xin chào!",
     "about": "Đi đến trang about"
+  },
+  "AuthPage": {
+    "login": {
+      "title": "Đăng nhập",
+      "submitButton": "Đăng nhập",
+      "fields": {
+        "username": {
+          "label": "Tài khoản đăng nhập",
+          "placeholder": "Tài khoản đăng nhập"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Điền email"
+        },
+        "emailOrUsername": {
+          "label": "Email hoặc tài khoản đăng nhập",
+          "placeholder": "Điền email hoặc tài khoản đăng nhập"
+        },
+        "password": {
+          "label": "Mật khẩu",
+          "placeholder": "Mật khẩu"
+        }
+      },
+      "forgotPassword": "Quên mật khẩu?"
+    },
+    "register": {
+      "title": "Đăng ký",
+      "submitButton": "Đăng ký",
+      "fields": {
+        "fullName": {
+          "label": "Họ và tên",
+          "placeholder": "Họ và tên"
+        },
+        "birthday": {
+          "label": "Ngày sinh",
+          "placeholder": "mm/dd/yyyy"
+        },
+        "phoneNumber": {
+          "label": "Số điện thoại",
+          "placeholder": "Số điện thoại"
+        },
+        "username": {
+          "label": "Tên đăng nhập",
+          "placeholder": "Tên đăng nhập"
+        },
+        "email": {
+          "label": "Email",
+          "placeholder": "Điền email"
+        },
+        "password": {
+          "label": "Mật khẩu",
+          "placeholder": "Mật khẩu"
+        },
+        "confirmPassword": {
+          "label": "Xác thực mật khẩu",
+          "placeholder": "Xác thực mật khẩu"
+        },
+        "privacyPolicy": "Chính sách bảo mật",
+        "isAgree": "Khách hàng đã đồng ý các điều khoản, điều kiện của thành viên Cinestar"
+      },
+      "alreadyHaveAnAccount": "Bạn đã có tài khoản?",
+      "goToLogin": "Đăng nhập"
+    }
+  },
+  "validation": {
+    "required": "Vui lòng nhập thông tin",
+    "dateOfBirthRequired": "Vui lòng điền ngày sinh",
+    "dateOfBirthInvalid": "Ngày sinh sai định dạng",
+    "emailInvalid": "Email không hợp lệ",
+    "passwordsDoNotMatch": "Mật khẩu không trùng khớp",
+    "emailOrUsernameInvalid": "Email hoặc tài khoản đăng nhập không hợp lệ"
   }
 }

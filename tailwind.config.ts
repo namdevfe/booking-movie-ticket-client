@@ -11,7 +11,12 @@ const config: Config = {
       colors: {
         primary: 'var(--primary-cl)',
         secondary: 'var(--secondary-cl)',
-        gray: 'var(--gray-cl)'
+        gray: 'var(--gray-cl)',
+        labelGray: 'var(--text-label-gray-cl)',
+        error: 'var(--red-cl)',
+        borderInputDefault: 'var(--border-input-default-cl)',
+        borderInputHover: 'var(--border-input-hover-cl)',
+        helperText: 'var(--helper-text-cl)'
       },
       fontSize: {
         xs: '1.2rem',

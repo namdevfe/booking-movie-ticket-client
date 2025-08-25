@@ -63,17 +63,19 @@ const DropdownProvider = ({ children }: DropdownProviderProps) => {
 
   // Set current rect for dropdown content follow dropdown when resize
   useEffect(() => {
-    const handleWindowResize = () => {
+    const handleUpdatePosition = () => {
       if (dropdownRef.current) {
         const clientRect = dropdownRef.current.getBoundingClientRect()
         setCoords(clientRect)
       }
     }
 
-    window.addEventListener('resize', handleWindowResize)
+    window.addEventListener('resize', handleUpdatePosition)
+    // window.addEventListener('scroll', handleUpdatePosition, true)
 
     return () => {
-      window.removeEventListener('resize', handleWindowResize)
+      window.removeEventListener('resize', handleUpdatePosition)
+      // window.removeEventListener('scroll', handleUpdatePosition, true)
     }
   }, [])
 
