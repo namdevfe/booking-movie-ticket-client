@@ -11,6 +11,7 @@ const Modal = dynamic(() => import('@/components/common/modal'), { ssr: false })
 interface OtpModalProps {
   length?: number
   isOpen?: boolean
+  isLoading?: boolean
   onSubmit?: (otp: string) => void
   onResend?: () => void
   onClose?: () => void
@@ -18,7 +19,7 @@ interface OtpModalProps {
 
 const FIVE_MINUTES = 300
 
-const OtpModal = ({ isOpen = false, length = 6, onSubmit, onResend, onClose }: OtpModalProps) => {
+const OtpModal = ({ isOpen = false, isLoading = false, length = 6, onSubmit, onResend, onClose }: OtpModalProps) => {
   const tOtpModal = useTranslations('AuthPage.otpModal')
   const inputRefs = useRef<HTMLInputElement[]>([])
   const [otp, setOtp] = useState<string[]>(new Array(length).fill(''))
@@ -135,7 +136,12 @@ const OtpModal = ({ isOpen = false, length = 6, onSubmit, onResend, onClose }: O
         </div>
 
         {/* Verify Button */}
-        <Button className='mt-[24px] !w-full' disabled={isDisabledVerifyOtpButton} onClick={handleOtpSubmit}>
+        <Button
+          className='mt-[24px] !w-full'
+          disabled={isDisabledVerifyOtpButton}
+          isLoading={isLoading}
+          onClick={handleOtpSubmit}
+        >
           {tOtpModal('verifyButton')}
         </Button>
 
