@@ -3,13 +3,15 @@
 import { Link } from '@/i18n/navigation'
 import styles from './button.module.scss'
 import { useLocale } from 'next-intl'
+import Spinner from '@/components/common/spinner'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode
-  variant?: 'primary' | 'secondary' | 'transparent' | 'link'
+  variant?: 'primary' | 'secondary' | 'transparent' | 'link' | 'disabled'
   size?: 'md' | 'lg'
   href?: string
   locale?: string
+  isLoading?: boolean
 }
 
 const Button = ({
@@ -19,6 +21,9 @@ const Button = ({
   className = '',
   href,
   locale,
+  disabled = false,
+  isLoading = false,
+  onClick,
   ...restProps
 }: ButtonProps) => {
   const currentLocale = useLocale()
@@ -77,9 +82,19 @@ const Button = ({
 
   return (
     <button
-      className={`${styles.btn} ${renderButtonVariantClassNames()} ${renderButtonSizeClassNames()} ${className}`}
+      className={`group ${styles.btn} ${renderButtonVariantClassNames()} ${renderButtonSizeClassNames()} ${
+        disabled || isLoading ? styles['--disabled'] : ''
+      } ${className}`}
+      disabled={disabled || isLoading}
+      onClick={disabled || isLoading ? () => {} : onClick}
       {...restProps}
     >
+      {isLoading && (
+        <Spinner
+          size='sm'
+          className='border-black border-t-transparent group-hover:border-white group-hover:border-t-transparent'
+        />
+      )}
       {children}
     </button>
   )

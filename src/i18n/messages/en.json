@@ -72,6 +72,14 @@
       },
       "alreadyHaveAnAccount": "Already have an account?",
       "goToLogin": "Sign up"
+    },
+    "otpModal": {
+      "title": "Enter your OTP",
+      "description": "We have sent a OTP to your email address",
+      "verifyButton": "Verify OTP",
+      "didNotGetTheCode": "Didn't get the code?",
+      "resendButton": "Resend OTP",
+      "otpValidity": "OTP validity is: "
     }
   },
   "validation": {

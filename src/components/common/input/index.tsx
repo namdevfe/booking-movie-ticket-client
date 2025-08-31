@@ -7,14 +7,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: ReactNode
   required?: boolean
   error?: string
+  rootClassName?: string
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  const { label, required = false, className = '', error, ...restProps } = props
+  const { label, required = false, className = '', error, rootClassName = '', ...restProps } = props
   const isError = !!error
 
   return (
-    <div className='form-control'>
+    <div className={cn('form-control', rootClassName)}>
       {label && (
         <label className='block mb-[8px]'>
           <span className='inline-block text-labelGray'>{label}</span>
