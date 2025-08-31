@@ -2,8 +2,12 @@ import {
   LoginResponse,
   RegisterPayload,
   RegisterResponse,
+  ResendOTPPayload,
+  ResendOTPResponse,
   SaveTokenToCookiesPayload,
-  SaveTokenToCookiesResponse
+  SaveTokenToCookiesResponse,
+  VerifyEmailPayload,
+  VerifyEmailResponse
 } from '@/types/auth-type'
 import http from '@/utils/http'
 
@@ -18,6 +22,12 @@ const authService = {
     return http.post<SaveTokenToCookiesResponse>('/auth', payload, {
       baseUrl: ''
     })
+  },
+  verifyEmail: (payload: VerifyEmailPayload) => {
+    return http.put<VerifyEmailResponse>('/auth/verify-email', payload)
+  },
+  resendOTP: (payload: ResendOTPPayload) => {
+    return http.put<ResendOTPResponse>('/auth/resend-otp', payload)
   }
 }
 

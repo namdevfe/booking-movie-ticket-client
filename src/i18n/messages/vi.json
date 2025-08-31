@@ -72,6 +72,14 @@
       },
       "alreadyHaveAnAccount": "Bạn đã có tài khoản?",
       "goToLogin": "Đăng nhập"
+    },
+    "otpModal": {
+      "title": "Xác thực OTP",
+      "description": "OTP đã được gửi đến email của bạn",
+      "verifyButton": "Xác nhận OTP",
+      "didNotGetTheCode": "Bạn chưa nhận được OTP?",
+      "resendButton": "Gửi lại OTP",
+      "otpValidity": "Mã OTP sẽ có hiệu lực trong: "
     }
   },
   "validation": {
