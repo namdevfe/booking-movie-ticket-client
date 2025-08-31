@@ -17,6 +17,7 @@ const AuthTabs = () => {
   const [emailRegistered, setEmailRegistered] = useState<string>('')
   const [isLoginLoading, setIsLoginLoading] = useState<boolean>(false)
   const [isRegisterLoading, setIsRegisterLoading] = useState<boolean>(false)
+  const [isVerifyEmailLoading, setIsVerifyEmailLoading] = useState<boolean>(false)
 
   const handleTabChange = (tab: 'login' | 'register') => {
     setActiveTab(tab)
@@ -95,6 +96,7 @@ const AuthTabs = () => {
   }
 
   const handleVerifyEmail = async (otpCode: string) => {
+    setIsVerifyEmailLoading(true)
     try {
       const payload: VerifyEmailPayload = {
         email: emailRegistered,
@@ -110,6 +112,8 @@ const AuthTabs = () => {
       }
     } catch (error: any) {
       toast.error(error?.message)
+    } finally {
+      setIsVerifyEmailLoading(false)
     }
   }
 
@@ -150,7 +154,13 @@ const AuthTabs = () => {
       {activeTab === 'login' && <LoginForm isLoading={isLoginLoading} onSubmit={handleLogin} />}
       {activeTab === 'register' && <RegisterForm isLoading={isRegisterLoading} onSubmit={handleRegister} />}
 
-      <OtpModal isOpen={isOpenOTPModal} onSubmit={handleVerifyEmail} onClose={handleCloseOTPModal} />
+      <OtpModal
+        isOpen={isOpenOTPModal}
+        isLoading={isVerifyEmailLoading}
+        onResend={() => handleResendOTP(emailRegistered)}
+        onSubmit={handleVerifyEmail}
+        onClose={handleCloseOTPModal}
+      />
     </div>
   )
 }
