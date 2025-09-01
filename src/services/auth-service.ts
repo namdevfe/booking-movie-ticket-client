@@ -1,4 +1,6 @@
 import {
+  ForgotPasswordPayload,
+  ForgotPasswordResponse,
   LoginResponse,
   RegisterPayload,
   RegisterResponse,
@@ -28,6 +30,9 @@ const authService = {
   },
   resendOTP: (payload: ResendOTPPayload) => {
     return http.put<ResendOTPResponse>('/auth/resend-otp', payload)
+  },
+  forgotPassword: (payload: ForgotPasswordPayload) => {
+    return http.put<ForgotPasswordResponse>('/auth/forgot-password', payload)
   }
 }
 
