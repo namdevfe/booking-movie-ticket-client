@@ -80,6 +80,15 @@
       "didNotGetTheCode": "Didn't get the code?",
       "resendButton": "Resend OTP",
       "otpValidity": "OTP validity is: "
+    },
+    "forgotPasswordModal": {
+      "title": "Forgot password",
+      "description": "Please enter your email",
+      "sendButton": "Send",
+      "label": "Email",
+      "placeholder": "Enter your email address",
+      "success": "Send request successfully, please check your email",
+      "failed": "Send request failed, please try again later"
     }
   },
   "validation": {

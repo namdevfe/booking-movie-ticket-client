@@ -80,6 +80,15 @@
       "didNotGetTheCode": "Bạn chưa nhận được OTP?",
       "resendButton": "Gửi lại OTP",
       "otpValidity": "Mã OTP sẽ có hiệu lực trong: "
+    },
+    "forgotPasswordModal": {
+      "title": "Quên mật khẩu",
+      "description": "Vui lòng nhập email của bạn",
+      "sendButton": "Gửi yêu cầu đặt lại mật khẩu",
+      "label": "Email",
+      "placeholder": "Nhập email",
+      "success": "Gửi yêu cầu đặt lại mật khẩu thành công, vui lòng kiểm tra email của bản",
+      "failed": "Gửi yêu cầu thất bại. Vui lòng thử lại sau"
     }
   },
   "validation": {

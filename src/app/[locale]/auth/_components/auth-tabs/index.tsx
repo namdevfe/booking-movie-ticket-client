@@ -133,26 +133,28 @@ const AuthTabs = () => {
   }
 
   return (
-    <div className={styles.authTabs}>
-      {/* Tab List */}
-      <ul className={styles.tabList}>
-        <li
-          className={`${styles.tabItem} ${activeTab === 'login' ? styles['tabItem--active'] : ''}`}
-          onClick={() => handleTabChange('login')}
-        >
-          <h2>{t('login.title')}</h2>
-        </li>
-        <li
-          className={`${styles.tabItem} ${activeTab === 'register' ? styles['tabItem--active'] : ''}`}
-          onClick={() => handleTabChange('register')}
-        >
-          <h2>{t('register.title')}</h2>
-        </li>
-      </ul>
+    <>
+      <div className={styles.authTabs}>
+        {/* Tab List */}
+        <ul className={styles.tabList}>
+          <li
+            className={`${styles.tabItem} ${activeTab === 'login' ? styles['tabItem--active'] : ''}`}
+            onClick={() => handleTabChange('login')}
+          >
+            <h2>{t('login.title')}</h2>
+          </li>
+          <li
+            className={`${styles.tabItem} ${activeTab === 'register' ? styles['tabItem--active'] : ''}`}
+            onClick={() => handleTabChange('register')}
+          >
+            <h2>{t('register.title')}</h2>
+          </li>
+        </ul>
 
-      {/* Tab Content */}
-      {activeTab === 'login' && <LoginForm isLoading={isLoginLoading} onSubmit={handleLogin} />}
-      {activeTab === 'register' && <RegisterForm isLoading={isRegisterLoading} onSubmit={handleRegister} />}
+        {/* Tab Content */}
+        {activeTab === 'login' && <LoginForm isLoading={isLoginLoading} onSubmit={handleLogin} />}
+        {activeTab === 'register' && <RegisterForm isLoading={isRegisterLoading} onSubmit={handleRegister} />}
+      </div>
 
       <OtpModal
         isOpen={isOpenOTPModal}
@@ -161,7 +163,7 @@ const AuthTabs = () => {
         onSubmit={handleVerifyEmail}
         onClose={handleCloseOTPModal}
       />
-    </div>
+    </>
   )
 }
 
