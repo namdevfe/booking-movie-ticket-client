@@ -89,6 +89,17 @@
       "placeholder": "Nhập email",
       "success": "Gửi yêu cầu đặt lại mật khẩu thành công, vui lòng kiểm tra email của bản",
       "failed": "Gửi yêu cầu thất bại. Vui lòng thử lại sau"
+    },
+    "resetPasswordModal": {
+      "title": "Đặt lại mật khẩu",
+      "description": "Vui lòng nhập mật khẩu mới",
+      "resetButton": "Đặt lại mật khẩu",
+      "success": "Đặt lại mật khẩu thành công, vui lòng đăng nhập lại",
+      "failed": "Đặt lại mật khẩu thất bại, vui lòng thử lại sau",
+      "newPasswordLabel": "Mật khẩu mới",
+      "newPasswordPlaceholder": "Nhập mật khẩu mới",
+      "confirmPasswordLabel": "Xác nhận mật khẩu mới",
+      "confirmPasswordPlaceholder": "Nhập xác nhận mật khẩu mới"
     }
   },
   "validation": {
