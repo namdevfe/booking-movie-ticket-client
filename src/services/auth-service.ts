@@ -6,6 +6,7 @@ import {
   RegisterResponse,
   ResendOTPPayload,
   ResendOTPResponse,
+  ResetPasswordResponse,
   SaveTokenToCookiesPayload,
   SaveTokenToCookiesResponse,
   VerifyEmailPayload,
@@ -33,6 +34,9 @@ const authService = {
   },
   forgotPassword: (payload: ForgotPasswordPayload) => {
     return http.put<ForgotPasswordResponse>('/auth/forgot-password', payload)
+  },
+  resetPassword: (payload: { email: string; password: string; resetPasswordToken: string }) => {
+    return http.put<ResetPasswordResponse>('/auth/reset-password', payload)
   }
 }
 

@@ -89,6 +89,17 @@
       "placeholder": "Enter your email address",
       "success": "Send request successfully, please check your email",
       "failed": "Send request failed, please try again later"
+    },
+    "resetPasswordModal": {
+      "title": "Reset password",
+      "description": "Please enter new password",
+      "resetButton": "Reset password",
+      "success": "Reset password successfully, please login",
+      "failed": "Reset password failed, please try again later",
+      "newPasswordLabel": "New password",
+      "newPasswordPlaceholder": "Enter your new password",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "Enter your confirm password"
     }
   },
   "validation": {

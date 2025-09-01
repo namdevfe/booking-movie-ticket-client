@@ -3,21 +3,35 @@
 import LoginForm from '@/app/[locale]/auth/_components/auth-tabs/login-form'
 import RegisterForm from '@/app/[locale]/auth/_components/auth-tabs/register-form'
 import { useTranslations } from 'next-intl'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import OtpModal from '@/components/common/otp-modal'
 import authService from '@/services/auth-service'
-import { LoginPayload, RegisterPayload, ResendOTPPayload, VerifyEmailPayload } from '@/types/auth-type'
+import {
+  LoginPayload,
+  RegisterPayload,
+  ResendOTPPayload,
+  ResetPasswordPayload,
+  VerifyEmailPayload
+} from '@/types/auth-type'
 import { toast } from 'react-toastify'
 import styles from './auth-tabs.module.scss'
+import ResetPasswordModal from '@/app/[locale]/auth/_components/reset-password-modal'
+import { useSearchParams } from 'next/navigation'
 
 const AuthTabs = () => {
   const t = useTranslations('AuthPage')
+  const searchParams = useSearchParams()
   const [activeTab, setActiveTab] = useState<'login' | 'register'>('login')
   const [isOpenOTPModal, setIsOpenOTPModal] = useState<boolean>(false)
   const [emailRegistered, setEmailRegistered] = useState<string>('')
   const [isLoginLoading, setIsLoginLoading] = useState<boolean>(false)
   const [isRegisterLoading, setIsRegisterLoading] = useState<boolean>(false)
   const [isVerifyEmailLoading, setIsVerifyEmailLoading] = useState<boolean>(false)
+  const [isOpenResetPasswordModal, setIsOpenResetPasswordModal] = useState<boolean>(false)
+  const [isResetPasswordLoading, setIsResetPasswordLoading] = useState<boolean>(false)
+
+  const email = searchParams.get('email')
+  const resetPasswordToken = searchParams.get('resetPasswordToken')
 
   const handleTabChange = (tab: 'login' | 'register') => {
     setActiveTab(tab)
@@ -132,6 +146,39 @@ const AuthTabs = () => {
     }
   }
 
+  const handleOpenResetPasswordModal = () => {
+    setIsOpenResetPasswordModal(true)
+  }
+
+  const handleCloseResetPasswordModal = () => {
+    setIsOpenResetPasswordModal(false)
+  }
+
+  const handleResetPassword = async (data: ResetPasswordPayload) => {
+    if (email && resetPasswordToken) {
+      setIsResetPasswordLoading(true)
+
+      try {
+        const payload = { password: data.password, email, resetPasswordToken }
+        const res = await authService.resetPassword(payload)
+        if (res?.statusCode === 200) {
+          handleCloseResetPasswordModal()
+          toast.success(res.message)
+        }
+      } catch (error: any) {
+        toast.error(error?.message)
+      } finally {
+        setIsResetPasswordLoading(false)
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (email && resetPasswordToken) {
+      handleOpenResetPasswordModal()
+    }
+  }, [email, resetPasswordToken])
+
   return (
     <>
       <div className={styles.authTabs}>
@@ -162,6 +209,13 @@ const AuthTabs = () => {
         onResend={() => handleResendOTP(emailRegistered)}
         onSubmit={handleVerifyEmail}
         onClose={handleCloseOTPModal}
+      />
+
+      <ResetPasswordModal
+        isOpen={isOpenResetPasswordModal}
+        isLoading={isResetPasswordLoading}
+        onSubmit={handleResetPassword}
+        onClose={handleCloseResetPasswordModal}
       />
     </>
   )
