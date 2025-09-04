@@ -1,26 +1,23 @@
-import { Link } from '@/i18n/navigation'
-import Image from 'next/image'
 import styles from './header.module.scss'
 import MobileMenuToggle from './mobile-menu-toggle'
 import Button from '@/components/common/button'
 import { IconCor, IconSearch, IconTicket, IconUser } from '@/components/common/icons'
-import Account from '@/components/common/header/account'
 import { getTranslations } from 'next-intl/server'
 import SelectLanguage from '@/components/common/select-language'
+import Logo from '@/components/common/logo'
+import SearchInput from '@/components/common/search-input'
+import Account from '@/components/common/account'
 
 const Header = async () => {
   const isLoggedIn = false
   const tButton = await getTranslations('button')
-  const tSearch = await getTranslations('search')
 
   return (
     <header className={styles.header}>
       <div className='layout-container h-full'>
         {/* Header top */}
         <div className='h-headerTop flex items-center justify-between'>
-          <Link href='/' className='relative flex'>
-            <Image src='/img/logo.webp' alt='logo' width={130} height={45} />
-          </Link>
+          <Logo />
 
           <div className='hidden items-center gap-[10px] md:flex'>
             <Button size='lg'>
@@ -46,17 +43,7 @@ const Header = async () => {
           {/* Search & Auth Desktop */}
           <div className='hidden items-center gap-[36px] gap md:hidden lg:flex'>
             {/* Search */}
-            <div className='px-[16px] flex w-headerSearch h-headerSearch overflow-hidden bg-white rounded-[1000px]'>
-              <input
-                type='text'
-                placeholder={tSearch('placeholder')}
-                className='w-full text-sm text-gray'
-                spellCheck={false}
-              />
-              <Button variant='transparent' className='w-[20px] !h-full !p-0'>
-                <Image src='/img/ic-header-search.svg' alt='icon-header-search' width={16} height={16} />
-              </Button>
-            </div>
+            <SearchInput />
 
             {/* Auth */}
             {isLoggedIn ? (

@@ -99,3 +99,43 @@ export const IconUser = ({ width = 18, height = 18, className = '' }: IconProps)
     </svg>
   )
 }
+
+export const IconDashboard = ({ width = 12, height = 12, className = '' }: IconProps) => {
+  return (
+    <svg
+      className={className}
+      width={width}
+      height={height}
+      viewBox={`0 0 ${width} ${height}`}
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <path
+        d='M4.66666 0.666656L7.33332 11.3333M5.99999 5.99999L0.666656 7.33332M0.666656 1.99999C0.666656 1.64637 0.807132 1.30723 1.05718 1.05718C1.30723 0.807132 1.64637 0.666656 1.99999 0.666656H9.99999C10.3536 0.666656 10.6928 0.807132 10.9428 1.05718C11.1928 1.30723 11.3333 1.64637 11.3333 1.99999V9.99999C11.3333 10.3536 11.1928 10.6928 10.9428 10.9428C10.6928 11.1928 10.3536 11.3333 9.99999 11.3333H1.99999C1.64637 11.3333 1.30723 11.1928 1.05718 10.9428C0.807132 10.6928 0.666656 10.3536 0.666656 9.99999V1.99999Z'
+        stroke='currentColor'
+        strokeWidth='1.25'
+        strokeLinecap='round'
+        strokeLinejoin='round'
+      />
+    </svg>
+  )
+}
+
+export const IconBell = ({ width = 24, height = 24, className = 'size-[24px]' }: IconProps) => {
+  return (
+    <svg
+      xmlns='http://www.w3.org/2000/svg'
+      fill='none'
+      viewBox={`0 0 ${width} ${height}`}
+      strokeWidth='1.5'
+      stroke='currentColor'
+      className={className}
+    >
+      <path
+        strokeLinecap='round'
+        strokeLinejoin='round'
+        d='M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5'
+      />
+    </svg>
+  )
+}

@@ -23,6 +23,11 @@
   --border-input-default-cl: #e2e8f0;
   --border-input-hover-cl: #64748b;
   --helper-text-cl: #334155;
+  --w-admin-sidebar: 56px;
+  --w-admin-body: calc(100% - var(--w-admin-sidebar));
+  --h-admin-sidebar-logo: 68px;
+  --h-admin-header: 80px;
+  --w-admin-header: calc(100% - var(--w-admin-sidebar));
 
   // Animations
   --transition-duration-time: 0.4s;
@@ -33,6 +38,9 @@
 
   @include md {
     --w-layout-container: calc(1200px + (var(--p-layout-container) * 2));
+    --w-admin-sidebar: 280px;
+    --w-admin-body: calc(100% - var(--w-admin-sidebar));
     --h-header-top: 78px;
+    --w-admin-header: calc(100% - var(--w-admin-sidebar));
   }
 }

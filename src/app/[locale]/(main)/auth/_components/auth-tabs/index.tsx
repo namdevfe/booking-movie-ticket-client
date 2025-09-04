@@ -1,7 +1,5 @@
 'use client'
 
-import LoginForm from '@/app/[locale]/auth/_components/auth-tabs/login-form'
-import RegisterForm from '@/app/[locale]/auth/_components/auth-tabs/register-form'
 import { useTranslations } from 'next-intl'
 import { useCallback, useEffect, useState } from 'react'
 import OtpModal from '@/components/common/otp-modal'
@@ -15,8 +13,10 @@ import {
 } from '@/types/auth-type'
 import { toast } from 'react-toastify'
 import styles from './auth-tabs.module.scss'
-import ResetPasswordModal from '@/app/[locale]/auth/_components/reset-password-modal'
 import { useSearchParams } from 'next/navigation'
+import ResetPasswordModal from '@/app/[locale]/(main)/auth/_components/reset-password-modal'
+import LoginForm from '@/app/[locale]/(main)/auth/_components/auth-tabs/login-form'
+import RegisterForm from '@/app/[locale]/(main)/auth/_components/auth-tabs/register-form'
 
 const AuthTabs = () => {
   const t = useTranslations('AuthPage')
