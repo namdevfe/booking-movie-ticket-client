@@ -16,7 +16,8 @@ const config: Config = {
         error: 'var(--red-cl)',
         borderInputDefault: 'var(--border-input-default-cl)',
         borderInputHover: 'var(--border-input-hover-cl)',
-        helperText: 'var(--helper-text-cl)'
+        helperText: 'var(--helper-text-cl)',
+        header: 'var(--bg-header-cl)'
       },
       fontSize: {
         xs: '1.2rem',
@@ -33,10 +34,15 @@ const config: Config = {
         header: 'var(--h-header)',
         headerTop: 'var(--h-header-top)',
         headerBottom: 'var(--h-header-bottom)',
-        headerSearch: 'var(--h-header-search)'
+        headerSearch: 'var(--h-header-search)',
+        adminSidebarLogo: 'var(--h-admin-sidebar-logo)',
+        adminHeader: 'var(--h-admin-header)'
       },
       width: {
-        headerSearch: 'var(--w-header-search)'
+        headerSearch: 'var(--w-header-search)',
+        adminSidebar: 'var(--w-admin-sidebar)',
+        adminBody: 'var(--w-admin-body)',
+        adminHeader: 'var(--w-admin-header)'
       }
     }
   },

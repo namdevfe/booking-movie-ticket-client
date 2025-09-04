@@ -1,6 +1,6 @@
 'use client'
 
-import { getResetPasswordSchema } from '@/app/[locale]/auth/_components/reset-password-modal/reset-password-schema'
+import { getResetPasswordSchema } from '@/app/[locale]/(main)/auth/_components/reset-password-modal/reset-password-schema'
 import Button from '@/components/common/button'
 import Input from '@/components/common/input'
 import { ResetPasswordPayload } from '@/types/auth-type'

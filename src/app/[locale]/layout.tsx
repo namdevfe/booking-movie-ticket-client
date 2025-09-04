@@ -5,7 +5,6 @@ import { setRequestLocale } from 'next-intl/server'
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import '@/styles/globals.scss'
-import MainLayout from '@/components/layouts/main-layout'
 import { ToastContainer } from 'react-toastify'
 
 // Fonts
@@ -61,10 +60,7 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body className={`${josefinSans.className} ${josefinSans.variable} ${anton.variable}`}>
-        <NextIntlClientProvider>
-          <MainLayout>{children}</MainLayout>
-        </NextIntlClientProvider>
-
+        <NextIntlClientProvider>{children}</NextIntlClientProvider>
         <ToastContainer theme='colored' />
       </body>
     </html>

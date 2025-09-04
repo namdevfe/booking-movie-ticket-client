@@ -109,5 +109,13 @@
     "emailInvalid": "Please enter a valid email",
     "passwordsDoNotMatch": "Passwords do not match",
     "emailOrUsernameInvalid": "Please enter a valid email or username"
+  },
+  "admin": {
+    "sidebar": {
+      "menu": {
+        "dashboard": "Dasboard",
+        "users": "Users"
+      }
+    }
   }
 }

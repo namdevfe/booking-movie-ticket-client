@@ -1,6 +1,10 @@
 import Header from '@/components/common/header'
 
-const MainLayout = ({ children }: { children: React.ReactNode }) => {
+interface MainLayoutProps {
+  children: React.ReactNode
+}
+
+const MainLayout = ({ children }: MainLayoutProps) => {
   return (
     <>
       <Header />

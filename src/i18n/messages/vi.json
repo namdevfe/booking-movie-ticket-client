@@ -109,5 +109,13 @@
     "emailInvalid": "Email không hợp lệ",
     "passwordsDoNotMatch": "Mật khẩu không trùng khớp",
     "emailOrUsernameInvalid": "Email hoặc tài khoản đăng nhập không hợp lệ"
+  },
+  "admin": {
+    "sidebar": {
+      "menu": {
+        "dashboard": "Tổng quan",
+        "users": "Quản lý người dùng"
+      }
+    }
   }
 }
