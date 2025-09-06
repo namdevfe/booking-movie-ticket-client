@@ -3,6 +3,7 @@ import {
   ForgotPasswordResponse,
   GetProfileResponse,
   LoginResponse,
+  Profile,
   RegisterPayload,
   RegisterResponse,
   ResendOTPPayload,
@@ -43,6 +44,23 @@ const authService = {
     return http.get<GetProfileResponse>('/auth/profile', {
       headers: {
         ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
+      }
+    })
+  },
+  setSession: ({ token, user }: { token: string; user?: Profile }) => {
+    return http.post<any>(
+      '/sessions',
+      { token, user },
+      {
+        baseUrl: ''
+      }
+    )
+  },
+  getSession: (token: string) => {
+    return http.get<any>('/sessions', {
+      baseUrl: '',
+      headers: {
+        token
       }
     })
   }

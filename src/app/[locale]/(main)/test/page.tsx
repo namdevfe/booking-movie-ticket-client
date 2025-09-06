@@ -1,18 +1,9 @@
-import { STORAGE } from '@/constants/storage'
-import authService from '@/services/auth-service'
-import { cookies } from 'next/headers'
-import React from 'react'
+import { getSession } from '@/utils/session'
 
 const TestPage = async () => {
-  const cookieStore = cookies()
-  const accessToken = JSON.parse(cookieStore.get(STORAGE.ACCESS_TOKEN)?.value || '')
+  const { user } = await getSession()
 
-  if (accessToken) {
-    const res = await authService.getProfile(accessToken)
-    console.log('🚀res---->', res)
-  }
-
-  return <div>TestPage</div>
+  return <div>Xin chào {user?.email}</div>
 }
 
 export default TestPage
