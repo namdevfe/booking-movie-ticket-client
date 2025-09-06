@@ -5,6 +5,7 @@ import createMiddleware from 'next-intl/middleware'
 import { NextRequest, NextResponse } from 'next/server'
 import { routing } from './i18n/routing'
 import { RoleEnum } from '@/types/user-type'
+import { setSession } from '@/utils/session'
 
 const intlMiddleware = createMiddleware(routing)
 
@@ -30,10 +31,11 @@ export default async function middleware(req: NextRequest) {
   }
 
   const profileData = profileRes?.data
+  setSession({ token: token as string, user: profileData })
+
   const isAdmin = profileData?.roles.some(
     (role) => role.name.toLowerCase() === RoleEnum.ADMIN.toLowerCase().toString()
   )
-  // const isUser = profileData?.roles.some((role) => role.name === RoleEnum.USER.toString())
 
   if (!isAdmin && isAdminRoute) {
     return NextResponse.redirect(new URL(`/${locale}/permission-denied`, req.url))
