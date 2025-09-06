@@ -1,4 +1,4 @@
-import AuthTabs from '@/app/[locale]/auth/_components/auth-tabs'
+import AuthTabs from '@/app/[locale]/(main)/auth/_components/auth-tabs'
 
 const AuthPage = () => {
   return (

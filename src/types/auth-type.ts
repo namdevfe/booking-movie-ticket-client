@@ -1,10 +1,15 @@
-import { getLoginSchema } from '@/app/[locale]/auth/_components/auth-tabs/login-schema'
-import { getRegisterSchema } from '@/app/[locale]/auth/_components/auth-tabs/register-schema'
-import { getForgotPasswordSchema } from '@/app/[locale]/auth/_components/forgot-password-modal/forgot-password-schema'
-import { getResetPasswordSchema } from '@/app/[locale]/auth/_components/reset-password-modal/reset-password-schema'
+import { getLoginSchema } from '@/app/[locale]/(main)/auth/_components/auth-tabs/login-schema'
+import { getRegisterSchema } from '@/app/[locale]/(main)/auth/_components/auth-tabs/register-schema'
+import { getForgotPasswordSchema } from '@/app/[locale]/(main)/auth/_components/forgot-password-modal/forgot-password-schema'
+import { getResetPasswordSchema } from '@/app/[locale]/(main)/auth/_components/reset-password-modal/reset-password-schema'
 import { ApiResponse } from '@/types/api-type'
 import { User } from '@/types/user-type'
 import z from 'zod'
+
+export type Profile = Pick<
+  User,
+  '_id' | 'email' | 'username' | 'dateOfBirth' | 'phoneNumber' | 'isActive' | 'roles'
+>
 
 export type RegisterPayload = z.infer<ReturnType<typeof getRegisterSchema>>
 export type RegisterResponse = ApiResponse<
@@ -32,3 +37,5 @@ export type ForgotPasswordResponse = ApiResponse<undefined>
 
 export type ResetPasswordPayload = z.infer<ReturnType<typeof getResetPasswordSchema>>
 export type ResetPasswordResponse = ApiResponse<undefined>
+
+export type GetProfileResponse = ApiResponse<Profile>

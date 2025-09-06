@@ -1,6 +1,6 @@
 'use client'
 
-import { getForgotPasswordSchema } from '@/app/[locale]/auth/_components/forgot-password-modal/forgot-password-schema'
+import { getForgotPasswordSchema } from '@/app/[locale]/(main)/auth/_components/forgot-password-modal/forgot-password-schema'
 import Button from '@/components/common/button'
 import Input from '@/components/common/input'
 import authService from '@/services/auth-service'

@@ -1,7 +1,7 @@
 'use client'
 
-import { getLoginSchema } from '@/app/[locale]/auth/_components/auth-tabs/login-schema'
-import ForgotPasswordModal from '@/app/[locale]/auth/_components/forgot-password-modal'
+import { getLoginSchema } from '@/app/[locale]/(main)/auth/_components/auth-tabs/login-schema'
+import ForgotPasswordModal from '@/app/[locale]/(main)/auth/_components/forgot-password-modal'
 import Button from '@/components/common/button'
 import Input from '@/components/common/input'
 import { LoginPayload } from '@/types/auth-type'
@@ -69,7 +69,13 @@ const LoginForm = ({ isLoading = false, onSubmit }: LoginFormProps) => {
 
         {/* Bottom */}
         <div className='mt-[26px] w-full'>
-          <Button className='ml-auto' variant='link' size='lg' type='button' onClick={handleOpenForgotPasswordModal}>
+          <Button
+            className='ml-auto'
+            variant='link'
+            size='lg'
+            type='button'
+            onClick={handleOpenForgotPasswordModal}
+          >
             {t('forgotPassword')}
           </Button>
           <Button type='submit' size='lg' className='!w-full !text-base' isLoading={isLoading}>
@@ -78,7 +84,10 @@ const LoginForm = ({ isLoading = false, onSubmit }: LoginFormProps) => {
         </div>
       </form>
 
-      <ForgotPasswordModal isOpen={isOpenForgotPasswordModal} onClose={handleCloseForgotPasswordModal} />
+      <ForgotPasswordModal
+        isOpen={isOpenForgotPasswordModal}
+        onClose={handleCloseForgotPasswordModal}
+      />
     </>
   )
 }

@@ -1,6 +1,6 @@
 'use client'
 
-import { getRegisterSchema } from '@/app/[locale]/auth/_components/auth-tabs/register-schema'
+import { getRegisterSchema } from '@/app/[locale]/(main)/auth/_components/auth-tabs/register-schema'
 import Button from '@/components/common/button'
 import Input from '@/components/common/input'
 import { RegisterPayload } from '@/types/auth-type'
