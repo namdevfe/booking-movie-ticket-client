@@ -2,9 +2,16 @@
 
 import Dropdown from '@/components/common/dropdown'
 import { Link } from '@/i18n/navigation'
+import { Profile } from '@/types/auth-type'
 import Image from 'next/image'
 
-const Account = () => {
+interface AccountProps {
+  profile: Profile | null
+}
+
+const Account = ({ profile }: AccountProps) => {
+  const { email, username } = profile || {}
+
   return (
     <Dropdown>
       <Dropdown.Trigger className='flex items-center gap-[12px]'>
@@ -18,9 +25,9 @@ const Account = () => {
         </div>
         <div>
           <p className='text-left'>
-            <strong>Naw Dev</strong>
+            <strong>{username}</strong>
           </p>
-          <p className='text-sm text-gray'>nguyenkimquocnam@gmail.com</p>
+          <p className='text-sm text-gray'>{email}</p>
         </div>
       </Dropdown.Trigger>
       <Dropdown.Content>

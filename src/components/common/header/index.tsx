@@ -1,16 +1,19 @@
-import styles from './header.module.scss'
-import MobileMenuToggle from './mobile-menu-toggle'
+'use client'
+
+import Account from '@/components/common/account'
 import Button from '@/components/common/button'
 import { IconCor, IconSearch, IconTicket, IconUser } from '@/components/common/icons'
-import { getTranslations } from 'next-intl/server'
-import SelectLanguage from '@/components/common/select-language'
 import Logo from '@/components/common/logo'
 import SearchInput from '@/components/common/search-input'
-import Account from '@/components/common/account'
+import SelectLanguage from '@/components/common/select-language'
+import { useTranslations } from 'next-intl'
+import styles from './header.module.scss'
+import MobileMenuToggle from './mobile-menu-toggle'
+import { useAppSelector } from '@/store/hooks'
 
-const Header = async () => {
-  const isLoggedIn = false
-  const tButton = await getTranslations('button')
+const Header = () => {
+  const tButton = useTranslations('button')
+  const profile = useAppSelector((state) => state.auth.profile)
 
   return (
     <header className={styles.header}>
@@ -46,8 +49,8 @@ const Header = async () => {
             <SearchInput />
 
             {/* Auth */}
-            {isLoggedIn ? (
-              <Account />
+            {!!profile ? (
+              <Account profile={profile} />
             ) : (
               <Button
                 className='!p-0 hover:text-primary !font-josefinSans !text-base !normal-case'

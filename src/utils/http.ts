@@ -1,11 +1,20 @@
 import { apiRoot, apiRootClient } from '@/constants/api'
+import { STORAGE } from '@/constants/storage'
 import type { HttpClient, Method, RequestOptions } from '@/types/http-type'
+import { isClient } from '@/utils/is-client'
 
-const request = async <T = any>(method: Method, url: string, options: RequestOptions): Promise<T | undefined> => {
+const request = async <T = any>(
+  method: Method,
+  url: string,
+  options: RequestOptions
+): Promise<T | undefined> => {
   const baseUrl: string = options.baseUrl === undefined ? apiRoot : apiRootClient
   const fullUrl: string = url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`
-  const baseHeaders: HeadersInit | undefined = {
-    'Content-Type': 'application/json'
+  const accessToken =
+    isClient() && `Bearer ${JSON.parse(localStorage.getItem(STORAGE.ACCESS_TOKEN) as string)}`
+  const baseHeaders: any = {
+    'Content-Type': 'application/json',
+    Authorization: accessToken
   }
   const body: BodyInit | null | undefined = options.body ? JSON.stringify(options.body) : null
 
@@ -13,7 +22,8 @@ const request = async <T = any>(method: Method, url: string, options: RequestOpt
     const response = await fetch(fullUrl, {
       method,
       headers: {
-        ...baseHeaders
+        ...baseHeaders,
+        ...options.headers
       },
       body
     })
@@ -30,7 +40,8 @@ const request = async <T = any>(method: Method, url: string, options: RequestOpt
 }
 
 const http: HttpClient = {
-  get: <Response>(url: string, options?: Omit<RequestOptions, 'body'>) => request<Response>('GET', url, { ...options }),
+  get: <Response>(url: string, options?: Omit<RequestOptions, 'body'>) =>
+    request<Response>('GET', url, { ...options }),
   post: <Response>(url: string, body: any, options?: Omit<RequestOptions, 'body'>) =>
     request<Response>('POST', url, { ...options, body }),
   put: <Response>(url: string, body: any, options?: Omit<RequestOptions, 'body'>) =>

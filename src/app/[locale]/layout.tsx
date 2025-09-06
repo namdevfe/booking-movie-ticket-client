@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import '@/styles/globals.scss'
 import { ToastContainer } from 'react-toastify'
+import StoreProvider from '@/app/store-provider'
 
 // Fonts
 const anton = localFont({
@@ -60,7 +61,9 @@ export default async function LocaleLayout({
   return (
     <html lang={locale}>
       <body className={`${josefinSans.className} ${josefinSans.variable} ${anton.variable}`}>
-        <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <NextIntlClientProvider>
+          <StoreProvider>{children}</StoreProvider>
+        </NextIntlClientProvider>
         <ToastContainer theme='colored' />
       </body>
     </html>

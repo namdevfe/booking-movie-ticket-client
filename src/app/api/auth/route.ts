@@ -16,8 +16,19 @@ export const POST = async (request: Request) => {
     { status: 200 }
   )
 
-  response.cookies.set('accessToken', data.accessToken, { httpOnly: true, secure: true, sameSite: 'lax', path: '/' })
-  response.cookies.set('refreshToken', data.refreshToken, { httpOnly: true, secure: true, sameSite: 'lax', path: '/' })
+  response.cookies.set('accessToken', data.accessToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax',
+    path: '/'
+  })
+
+  response.cookies.set('refreshToken', data.refreshToken, {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'lax',
+    path: '/'
+  })
 
   return response
 }

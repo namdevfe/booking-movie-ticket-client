@@ -1,7 +1,8 @@
 'use client'
 
-import { useTranslations } from 'next-intl'
-import { useCallback, useEffect, useState } from 'react'
+import LoginForm from '@/app/[locale]/(main)/auth/_components/auth-tabs/login-form'
+import RegisterForm from '@/app/[locale]/(main)/auth/_components/auth-tabs/register-form'
+import ResetPasswordModal from '@/app/[locale]/(main)/auth/_components/reset-password-modal'
 import OtpModal from '@/components/common/otp-modal'
 import authService from '@/services/auth-service'
 import {
@@ -11,20 +12,22 @@ import {
   ResetPasswordPayload,
   VerifyEmailPayload
 } from '@/types/auth-type'
+import { useTranslations } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
+import { useCallback, useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
 import styles from './auth-tabs.module.scss'
-import { useSearchParams } from 'next/navigation'
-import ResetPasswordModal from '@/app/[locale]/(main)/auth/_components/reset-password-modal'
-import LoginForm from '@/app/[locale]/(main)/auth/_components/auth-tabs/login-form'
-import RegisterForm from '@/app/[locale]/(main)/auth/_components/auth-tabs/register-form'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { login } from '@/store/reducers/auth-slice'
 
 const AuthTabs = () => {
   const t = useTranslations('AuthPage')
   const searchParams = useSearchParams()
+  const dispatch = useAppDispatch()
+  const isLoginLoading = useAppSelector((state) => state.auth.isLoading.login)
   const [activeTab, setActiveTab] = useState<'login' | 'register'>('login')
   const [isOpenOTPModal, setIsOpenOTPModal] = useState<boolean>(false)
   const [emailRegistered, setEmailRegistered] = useState<string>('')
-  const [isLoginLoading, setIsLoginLoading] = useState<boolean>(false)
   const [isRegisterLoading, setIsRegisterLoading] = useState<boolean>(false)
   const [isVerifyEmailLoading, setIsVerifyEmailLoading] = useState<boolean>(false)
   const [isOpenResetPasswordModal, setIsOpenResetPasswordModal] = useState<boolean>(false)
@@ -46,44 +49,19 @@ const AuthTabs = () => {
   }, [])
 
   const handleLogin = async (data: LoginPayload, options?: { onSuccess?: () => void }) => {
-    setIsLoginLoading(true)
     try {
-      const payload: Record<string, any> = { password: data.password }
-      const isLoginWithEmail = data.emailOrUsername.includes('@')
+      const res = await dispatch(login(data)).unwrap()
 
-      if (isLoginWithEmail) {
-        payload.email = data.emailOrUsername
-      } else {
-        payload.username = data.emailOrUsername
-      }
-
-      const res = await authService.login(payload as LoginPayload & ({ email?: string } | { username?: string }))
-
-      if (res?.statusCode === 200 && res.data?.accessToken) {
-        const { accessToken, refreshToken } = res.data
-
-        // Save token to localStorage for client component
-        localStorage.setItem('accessToken', accessToken)
-        localStorage.setItem('refreshToken', refreshToken)
-
-        // Save token to cookies for server component
-        const saveTokenToCookiesRes = await authService.saveTokenToCookies(res.data)
-
-        if (saveTokenToCookiesRes?.statusCode === 200) {
-          toast.success(res.message)
-          options?.onSuccess?.()
-        }
+      if (res?.statusCode === 200 && res.data) {
+        toast.success(res?.message)
+        options?.onSuccess?.()
       }
     } catch (error: any) {
-      // Handle account not activated
       if (error?.statusCode === 400) {
         setEmailRegistered(data.emailOrUsername)
         handleResendOTP(data.emailOrUsername)
       }
-
       toast.error(error?.message)
-    } finally {
-      setIsLoginLoading(false)
     }
   }
 
@@ -185,13 +163,17 @@ const AuthTabs = () => {
         {/* Tab List */}
         <ul className={styles.tabList}>
           <li
-            className={`${styles.tabItem} ${activeTab === 'login' ? styles['tabItem--active'] : ''}`}
+            className={`${styles.tabItem} ${
+              activeTab === 'login' ? styles['tabItem--active'] : ''
+            }`}
             onClick={() => handleTabChange('login')}
           >
             <h2>{t('login.title')}</h2>
           </li>
           <li
-            className={`${styles.tabItem} ${activeTab === 'register' ? styles['tabItem--active'] : ''}`}
+            className={`${styles.tabItem} ${
+              activeTab === 'register' ? styles['tabItem--active'] : ''
+            }`}
             onClick={() => handleTabChange('register')}
           >
             <h2>{t('register.title')}</h2>
@@ -200,7 +182,9 @@ const AuthTabs = () => {
 
         {/* Tab Content */}
         {activeTab === 'login' && <LoginForm isLoading={isLoginLoading} onSubmit={handleLogin} />}
-        {activeTab === 'register' && <RegisterForm isLoading={isRegisterLoading} onSubmit={handleRegister} />}
+        {activeTab === 'register' && (
+          <RegisterForm isLoading={isRegisterLoading} onSubmit={handleRegister} />
+        )}
       </div>
 
       <OtpModal

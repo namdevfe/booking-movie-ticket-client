@@ -1,6 +1,7 @@
 import {
   ForgotPasswordPayload,
   ForgotPasswordResponse,
+  GetProfileResponse,
   LoginResponse,
   RegisterPayload,
   RegisterResponse,
@@ -37,6 +38,13 @@ const authService = {
   },
   resetPassword: (payload: { email: string; password: string; resetPasswordToken: string }) => {
     return http.put<ResetPasswordResponse>('/auth/reset-password', payload)
+  },
+  getProfile: (accessToken?: string) => {
+    return http.get<GetProfileResponse>('/auth/profile', {
+      headers: {
+        ...(accessToken ? { Authorization: `Bearer ${accessToken}` } : {})
+      }
+    })
   }
 }
 
